@@ -5,6 +5,7 @@ import { University, FilterState } from "../types";
 const getAiClient = () => {
   const apiKey = process.env.API_KEY;
   if (!apiKey) {
+    // In a real Vercel environment, ensure API_KEY is set in Project Settings
     console.error("API_KEY is missing from environment variables.");
     return null;
   }
@@ -31,7 +32,7 @@ export const getAiResponse = async (
     - Countries: ${filters.locations.length > 0 ? filters.locations.join(', ') : 'Any'}
     - Majors: ${filters.majors.length > 0 ? filters.majors.join(', ') : 'Any'}
     - Scholarships Required: ${filters.hasScholarship ? 'Yes' : 'No'}
-    - Degree Level: ${filters.degreeLevel}
+    - Degree Level: ${filters.degreeLevel.length > 0 ? filters.degreeLevel.join(', ') : 'Any'}
   `;
 
   const systemInstruction = `
@@ -58,8 +59,10 @@ export const getAiResponse = async (
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
       contents: userMessage,
-      systemInstruction: systemInstruction, // Correct top-level placement
-    });
+      config: {
+        systemInstruction: systemInstruction,
+      }
+    } as any);
 
     return response.text || "I'm thinking, but couldn't quite formulate an answer.";
   } catch (error) {

@@ -1,7 +1,7 @@
 {
   "name": "unichoice",
   "version": "1.0.0",
-  "description": "University discovery platform with Firebase and Gemini AI",
+  "description": "University discovery platform",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -16,6 +16,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@types/node": "^20.14.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",

@@ -37,6 +37,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <GraduationCap className="h-6 w-6 text-white" />
             </div>
             <span className="font-bold text-xl tracking-tight text-slate-900 hidden sm:block">UniChoice</span>
+            <span className="font-bold text-xl tracking-tight text-slate-900 sm:hidden">UniChoice</span>
           </div>
 
           {/* Search Desktop */}
@@ -58,7 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           )}
 
           {/* Right Side Actions */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             
             {/* Compare Button */}
             {currentView !== 'auth' && (
@@ -118,13 +119,31 @@ export const Navbar: React.FC<NavbarProps> = ({
             ) : (
               <button 
                 onClick={onAuthClick}
-                className="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2 rounded-full text-sm font-medium transition shadow-md hover:shadow-lg flex items-center gap-2"
+                className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 sm:px-5 sm:py-2 rounded-full text-sm font-medium transition shadow-md hover:shadow-lg flex items-center gap-2"
               >
-                <UserIcon className="h-4 w-4" /> Sign In
+                <UserIcon className="h-4 w-4" /> <span className="hidden sm:inline">Sign In</span>
               </button>
             )}
           </div>
         </div>
+
+        {/* Mobile Search Bar - Visible only on small screens */}
+        {currentView !== 'auth' && (
+          <div className="md:hidden pb-3">
+            <div className="relative w-full text-slate-500 focus-within:text-brand-600">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Search className="h-5 w-5" />
+              </div>
+              <input
+                type="text"
+                className="block w-full pl-10 pr-3 py-2 border border-slate-200 rounded-full leading-5 bg-slate-50 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-brand-500 focus:border-transparent text-sm transition duration-150 ease-in-out"
+                placeholder="Search universities..."
+                value={searchTerm}
+                onChange={(e) => onSearch(e.target.value)}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );
