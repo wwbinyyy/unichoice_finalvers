@@ -131,7 +131,7 @@ export const UniversityDetails: React.FC<UniversityDetailsProps> = ({ university
               <div className="flex items-center gap-2 text-sky-600 mb-1">
                 <Globe className="w-4 h-4" /> <span className="font-semibold text-sm">Intl. Students</span>
               </div>
-              <p className="text-2xl font-bold text-slate-800">{university.internationalStudentsPercent > 0 ? `${university.internationalStudentsPercent}%` : 'N/A'}</p>
+              <p className="text-2xl font-bold text-slate-800">{(university.internationalStudentsPercent ?? 0) > 0 ? `${university.internationalStudentsPercent}%` : 'N/A'}</p>
             </div>
             <div className="bg-amber-50 p-4 rounded-xl">
               <div className="flex items-center gap-2 text-amber-600 mb-1">
