@@ -76,9 +76,10 @@ function App() {
       const data = await getUniversities();
       setUniversities(data);
       if (data.length > 0) {
-        setAvailableLocations(Array.from(new Set(data.map(u => u.country))).filter(Boolean).sort());
-        setAvailableMajors(Array.from(new Set(data.flatMap(u => u.majors))).filter(Boolean).sort());
-        setAvailableDegreeLevels(Array.from(new Set(data.flatMap(u => u.degreeLevels))).filter(Boolean).sort());
+        // Fix TS2345: Explicitly tell TypeScript that filter removes undefined values
+        setAvailableLocations(Array.from(new Set(data.map(u => u.country))).filter((i): i is string => !!i).sort());
+        setAvailableMajors(Array.from(new Set(data.flatMap(u => u.majors))).filter((i): i is string => !!i).sort());
+        setAvailableDegreeLevels(Array.from(new Set(data.flatMap(u => u.degreeLevels))).filter((i): i is string => !!i).sort());
       }
     } catch (err: any) {
       setError("Network Error: Could not connect to the database. Please check your internet connection and try again.");

@@ -29,7 +29,8 @@ const renderNestedObject = (data: any): React.ReactNode => {
           {typeof value === 'object' && value !== null ? (
             <div className="pl-4 mt-1">{renderNestedObject(value)}</div>
           ) : (
-            String(value)
+            // Fix TS18048: Safe check for undefined values
+            String(value ?? '')
           )}
         </li>
       ))}
