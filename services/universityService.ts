@@ -5,96 +5,64 @@ import { University, Alumni } from "../types";
 // --- DATA ENRICHMENT LAYER ---
 // This manually verified data is prioritized over Firebase data to ensure accuracy for key fields.
 const ENRICHMENT_DATA: Record<string, Partial<University>> = {
-  'harvard-university': {
-    acceptanceRate: 4,
-    internationalStudentsPercent: 13,
-    deadlines: { early_action: 'Nov 1', regular_decision: 'Jan 1' }
-  },
-  'stanford-university': {
-    acceptanceRate: 4,
-    internationalStudentsPercent: 10,
-    deadlines: { restrictive_early_action: 'Nov 1', regular_decision: 'Jan 5' }
-  },
-  'massachusetts-institute-of-technology-mit': {
-    acceptanceRate: 4,
-    internationalStudentsPercent: 11,
-    deadlines: { early_action: 'Nov 1', regular_decision: 'Jan 4' }
-  },
-  'yale-university': {
-    acceptanceRate: 5,
-    internationalStudentsPercent: 12,
-    deadlines: { single_choice_early_action: 'Nov 1', regular_decision: 'Jan 2' }
-  },
-  'princeton-university': {
-    acceptanceRate: 4,
-    internationalStudentsPercent: 12,
-    deadlines: { single_choice_early_action: 'Nov 1', regular_decision: 'Jan 1' }
-  },
-  'columbia-university': {
-    acceptanceRate: 4,
-    internationalStudentsPercent: 19,
-    deadlines: { early_decision: 'Nov 1', regular_decision: 'Jan 1' }
-  },
-  'university-of-pennsylvania': {
-    acceptanceRate: 6,
-    internationalStudentsPercent: 13,
-    deadlines: { early_decision: 'Nov 1', regular_decision: 'Jan 5' }
-  },
-  'california-institute-of-technology-caltech': {
-    acceptanceRate: 3,
-    internationalStudentsPercent: 9,
-    deadlines: { restrictive_early_action: 'Nov 1', regular_decision: 'Jan 3' }
-  },
-  'university-of-cambridge': {
-      acceptanceRate: 21,
-      internationalStudentsPercent: 23,
-      deadlines: { ucas_deadline: 'Oct 15' }
-  },
-  'university-of-oxford': {
-      acceptanceRate: 17,
-      internationalStudentsPercent: 22,
-      deadlines: { ucas_deadline: 'Oct 15' }
-  },
-  'eth-zurich': {
-      acceptanceRate: 27,
-      internationalStudentsPercent: 40,
-      deadlines: { application_window: 'Nov 1 - Dec 15' }
-  },
-  'university-of-toronto': {
-      acceptanceRate: 43,
-      internationalStudentsPercent: 23,
-      deadlines: { common_app_deadline: 'Jan 15' }
-  },
-  'university-college-london-ucl': {
-      acceptanceRate: 38,
-      internationalStudentsPercent: 48,
-      deadlines: { ucas_deadline: 'Jan 26' }
-  },
-  'imperial-college-london': {
-      acceptanceRate: 14,
-      internationalStudentsPercent: 57,
-      deadlines: { ucas_deadline: 'Oct 15' }
-  },
-  'university-of-chicago': {
-      acceptanceRate: 5,
-      internationalStudentsPercent: 15,
-      deadlines: { early_action: 'Nov 1', regular_decision: 'Jan 2' }
-  },
-  'university-of-california-berkeley-ucb': {
-      acceptanceRate: 11,
-      internationalStudentsPercent: 15,
-      deadlines: { uc_application: 'Nov 30' }
-  },
-  'university-of-california-los-angeles-ucla': {
-      acceptanceRate: 9,
-      internationalStudentsPercent: 13,
-      deadlines: { uc_application: 'Nov 30' }
-  },
-  'national-university-of-singapore-nus': {
-      acceptanceRate: 7,
-      internationalStudentsPercent: 26,
-      deadlines: { application_deadline: 'Mar 3' }
-  }
+  // --- IVY LEAGUE & TOP US ---
+  'harvard-university': { acceptanceRate: 4, internationalStudentsPercent: 13 },
+  'stanford-university': { acceptanceRate: 4, internationalStudentsPercent: 10 },
+  'massachusetts-institute-of-technology-mit': { acceptanceRate: 4, internationalStudentsPercent: 11 },
+  'yale-university': { acceptanceRate: 5, internationalStudentsPercent: 12 },
+  'princeton-university': { acceptanceRate: 4, internationalStudentsPercent: 12 },
+  'columbia-university': { acceptanceRate: 4, internationalStudentsPercent: 19 },
+  'university-of-pennsylvania': { acceptanceRate: 6, internationalStudentsPercent: 13 },
+  'california-institute-of-technology-caltech': { acceptanceRate: 3, internationalStudentsPercent: 9 },
+  'brown-university': { acceptanceRate: 5, internationalStudentsPercent: 11 },
+  'dartmouth-college': { acceptanceRate: 6, internationalStudentsPercent: 10 },
+  'cornell-university': { acceptanceRate: 7, internationalStudentsPercent: 10 },
+  'university-of-chicago': { acceptanceRate: 5, internationalStudentsPercent: 15 },
+  'johns-hopkins-university': { acceptanceRate: 7, internationalStudentsPercent: 20 },
+  'northwestern-university': { acceptanceRate: 7, internationalStudentsPercent: 10 },
+  'duke-university': { acceptanceRate: 6, internationalStudentsPercent: 10 },
+  
+  // --- TOP US PUBLIC ---
+  'university-of-california-berkeley-ucb': { acceptanceRate: 11, internationalStudentsPercent: 15 },
+  'university-of-california-los-angeles-ucla': { acceptanceRate: 9, internationalStudentsPercent: 13 },
+  'university-of-michigan': { acceptanceRate: 18, internationalStudentsPercent: 7 },
+  'university-of-virginia': { acceptanceRate: 19, internationalStudentsPercent: 5 },
+  'university-of-north-carolina-at-chapel-hill': { acceptanceRate: 17, internationalStudentsPercent: 3 },
+  'georgia-institute-of-technology': { acceptanceRate: 17, internationalStudentsPercent: 10 },
+  'university-of-florida': { acceptanceRate: 23, internationalStudentsPercent: 4 },
+  'university-of-texas-at-austin': { acceptanceRate: 31, internationalStudentsPercent: 10 },
+  'university-of-washington': { acceptanceRate: 48, internationalStudentsPercent: 16 },
+  'university-of-california-san-diego': { acceptanceRate: 24, internationalStudentsPercent: 17 },
+
+  // --- TOP OTHER US ---
+  'new-york-university-nyu': { acceptanceRate: 8, internationalStudentsPercent: 28 },
+  'university-of-southern-california-usc': { acceptanceRate: 12, internationalStudentsPercent: 24 },
+  'carnegie-mellon-university': { acceptanceRate: 11, internationalStudentsPercent: 19 },
+  'rice-university': { acceptanceRate: 8, internationalStudentsPercent: 12 },
+  'vanderbilt-university': { acceptanceRate: 6, internationalStudentsPercent: 10 },
+  'washington-university-in-st-louis': { acceptanceRate: 11, internationalStudentsPercent: 19 },
+  'georgetown-university': { acceptanceRate: 12, internationalStudentsPercent: 14 },
+  
+  // --- TOP UK & EUROPE ---
+  'university-of-cambridge': { acceptanceRate: 21, internationalStudentsPercent: 23 },
+  'university-of-oxford': { acceptanceRate: 17, internationalStudentsPercent: 22 },
+  'eth-zurich': { acceptanceRate: 27, internationalStudentsPercent: 40 },
+  'university-college-london-ucl': { acceptanceRate: 38, internationalStudentsPercent: 48 },
+  'imperial-college-london': { acceptanceRate: 14, internationalStudentsPercent: 57 },
+  'university-of-edinburgh': { acceptanceRate: 40, internationalStudentsPercent: 41 },
+  'kings-college-london': { acceptanceRate: 13, internationalStudentsPercent: 40 },
+  'london-school-of-economics-lse': { acceptanceRate: 9, internationalStudentsPercent: 70 },
+  'epfl': { acceptanceRate: 21, internationalStudentsPercent: 60 },
+  'technical-university-of-munich': { acceptanceRate: 8, internationalStudentsPercent: 30 },
+
+  // --- CANADA & GLOBAL ---
+  'university-of-toronto': { acceptanceRate: 43, internationalStudentsPercent: 23 },
+  'mcgill-university': { acceptanceRate: 46, internationalStudentsPercent: 30 },
+  'university-of-british-columbia': { acceptanceRate: 52, internationalStudentsPercent: 28 },
+  'national-university-of-singapore-nus': { acceptanceRate: 7, internationalStudentsPercent: 26 },
+  'nanyang-technological-university': { acceptanceRate: 36, internationalStudentsPercent: 25 },
+  'university-of-melbourne': { acceptanceRate: 70, internationalStudentsPercent: 41 },
+  'university-of-sydney': { acceptanceRate: 30, internationalStudentsPercent: 38 },
 };
 
 // --- DEMO DATA INJECTION ---
@@ -223,7 +191,7 @@ export const getUniversities = async (): Promise<University[]> => {
             degreeLevels: Array.isArray(item.degreeLevels) ? item.degreeLevels : (item.degreeLevels ? Object.values(item.degreeLevels) : []),
             alumni: alumniList,
             admissionRequirements: item.admissionRequirements,
-            deadlines: enriched.deadlines ?? item.deadlines,
+            deadlines: item.deadlines, // Removed from enriched data, using DB directly as per earlier instructions, but rendering handles it.
             languages: item.languages ? Object.values(item.languages).map(String) : [],
           };
         });
